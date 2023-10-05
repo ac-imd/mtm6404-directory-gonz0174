@@ -18,13 +18,13 @@ function order(clients, orderBy) {
     // Sorting by the balance
     const sortedBalance = clients.sort((a, b) => a[orderBy.balance] - b[orderBy.balance])
 
-    // Sorting by name
+    // Sorting by name, making new items A and B so they can be sort by the name
     clients.sort((a, b) => {
-        const lowerA = a[orderBy.toLowerCase()];
-        const lowerB = b[orderBy.toLowerCase()];
+        const itemA = a[orderBy.toLowerCase()];
+        const itemB = b[orderBy.toLowerCase()];
   
-        if (lowerA < lowerB) return -1;
-        if (lowerA > lowerB) return 1;
+        if (itemA < itemB) return -1;
+        if (itemA > itemB) return 1;
         return 0;
     });
     return sorted, sortedBalance;
