@@ -12,8 +12,22 @@ function list(clients) {
 }
 
 function order(clients, orderBy) {
-    const sorted = clients.sort((a, b) => a[orderBy] - b[orderBy])
-    return sorted;
+    // Sorting by the index
+    const sorted = clients.sort((a, b) => a[orderBy.index] - b[orderBy.index])
+
+    // Sorting by the balance
+    const sortedBalance = clients.sort((a, b) => a[orderBy.balance] - b[orderBy.balance])
+
+    // Sorting by name
+    clients.sort((a, b) => {
+        const lowerA = a[orderBy.toLowerCase()];
+        const lowerB = b[orderBy.toLowerCase()];
+  
+        if (lowerA < lowerB) return -1;
+        if (lowerA > lowerB) return 1;
+        return 0;
+    });
+    return sorted, sortedBalance;
 }
 
 function total(clients) {
